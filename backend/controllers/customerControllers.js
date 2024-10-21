@@ -1,6 +1,12 @@
-const mongoose = require('mongoose');
 const buyer=require("../models/customerModel");
 const bcryptjs = require('bcryptjs');
+const jwt = require("jsonwebtoken")
+
+const createToken= (id)=>{
+    return jwt.sign({id}, process.env.JWT_SECRET||"12345678",{
+        expiresIn:3*60*60
+    })
+}
 
 const register=async (req,res)=>{
     try {
@@ -12,7 +18,14 @@ const register=async (req,res)=>{
             name,email,password:hashedpwd,address
         })
 
-        await details.save();
+       const newBuyer= await details.save();
+
+       let token= createToken(newBuyer._id);
+       res.cookie('jwt',token,{
+        maxAge:3*60*60*1000,credetials:true
+       })
+
+        
 
         res.status(200).send({
             message:"customer added succesfully",
@@ -40,6 +53,11 @@ const login= async (req,res)=>{
 
     if(isemail && await bcryptjs.compare(password,isemail.password)){
         res.status(200).send({message:"login successful"});
+        let token=createToken(isemail._id);
+        res.cookie("jwt",token,{
+            maxAge:3*60*60*1000,credetials:true
+        })
+        
     }else{
         return res.status(401).json({ message: 'Invalid credentials' });
     }

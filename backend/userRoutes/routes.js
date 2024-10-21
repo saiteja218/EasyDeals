@@ -4,7 +4,7 @@ const {checkUser}=require("../middleware/authMiddleware");
 
 const router=express.Router();
 
-router.get("/get-products",checkUser,getProducts);
+router.get("/get-products",getProducts);
 router.get("/get-seller-products/:id",checkUser,getSellerProducts);
 
 router.post("/add-products",checkUser,upload.single('image'),addProducts);

@@ -17,7 +17,7 @@ export default function AddProduct() {
     useEffect(()=>{
       const token=Cookies.get("jwt");
       if(!token){
-        navigate('/seller/login');
+        navigate('/');
       }
     },[navigate])
 

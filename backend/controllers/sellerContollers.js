@@ -38,7 +38,7 @@ const register= async (req,res)=>{
         const d= await newSeller.save();
         
         let token=createToken(d._id);
-        res.cookie('jwt',token,{ maxAge:60*60*1000,credentials:true});
+        res.cookie('jwt',token,{ maxAge:3*60*60*1000,credentials:true});
 
         res.status(200).send({
             message:"new seller added succesfully!",
