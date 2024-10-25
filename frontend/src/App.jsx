@@ -10,7 +10,8 @@ import Cookies from 'js-cookie';
 import BuyerLogin from './components/BuyerLogin';
 import BuyerHome from './components/BuyerHome';
 import BuyerSignup from './components/BuyerSignup';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import AllProducts from './components/AllProducts';
+
 
 
 function App() {
@@ -31,6 +32,8 @@ function App() {
         <Route path='/buyer/login' element={<BuyerLogin/>}/>
         <Route path='/buyer/signup' element={<BuyerSignup/>}/>
         <Route path='/buyerhome' element={<BuyerHome/>}/>  
+        <Route path='/products' element={<AllProducts/>}/>  
+
       </Routes>
       
     </div>

@@ -23,6 +23,7 @@ function BuyerHome(){
         // else{
         //     navigate("/login")
         // }
+        navigate('/products')
     }
     return (
 
